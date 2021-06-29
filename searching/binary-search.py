@@ -8,7 +8,6 @@ def binary_search(my_list, ele):
         elif my_list[middle] < ele:
             low = middle + 1
         else:
-            my_list[middle] > ele
             high = middle - 1
     return -1
 
