@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+We are given an array containg n numbers. All the numbers are present twice except for two numbers which are present only once. 
+Find the unique numbers in linear time without using any extra space. ( Hint - Use Bitwise )
+*/
+
+
+void uniqueNumberII(int n, int a[])
+{
+	int xo = 0;
+	for(int i=0; i<n; i++)
+	{
+		xo = xo^a[i];
+	}
+	//we have xor of two unique numbers in our xor basically
+
+	//we will find the position of first set bit in our xor
+	//because out of both numbers, only one number will have set bit at that position
+
+	int pos = 0;
+	int temp = xo;
+	while((temp&1)!=1)
+	{
+		pos++;
+		temp = temp>>1;
+	}
+
+	//now we will check, out of all numbers in array which numbers have set bit at position pos
+    int mask = 1<<pos;
+	int x = 0; //first unique number
+	int y = 0; //second unique number
+	for(int i=0; i<n; i++)
+	{
+      if((a[i]&mask)>0)
+	  {
+         x = x^a[i];
+	  }
+	}
+	//here we have our first unique number x
+
+	//if we xor our unique number with the xor value of whole array then we will get our second unique number
+
+	y = x^xo;
+
+	cout<<min(x,y)<<" "<<max(x,y);
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	int arr[n];
+	for(int i=0; i<n; i++)
+	{
+	   cin>>arr[i];
+	}
+    uniqueNumberII(n,arr);
+	return 0;
+}

@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int clearBitsFromItoJ(int n, int i, int j)
+{
+	//lets take one mask (a) as all ones with j+1 number of trailing zeros
+	int a = (~0)<<(j+1);
+
+	//lets take mask (b) as all zero with i number of trailing ones
+	int b = (1<<i)-1;
+
+	//required mask will be a|b
+	int mask = a|b;
+
+	n = n&mask;
+
+	return n;
+}
+
+int main()
+{
+	int n,i,j;
+	cin>>n>>i>>j;
+	cout<<clearBitsFromItoJ(n,i,j);
+	return 0;
+}

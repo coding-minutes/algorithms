@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+Every number occurs twice in the array except one number
+find out that number
+*/
+
+int uniqueNumber(int ar[], int n)
+{
+	int ans = 0;
+	for(int i=0; i<n; i++)
+	{
+		ans = ans ^ ar[i];
+	}
+	return ans;
+}
+
+int main()
+{
+	int arr[]= {1,5,3,5,8,9,8,1,3};
+    int n = sizeof(arr)/sizeof(int);
+
+	cout<<uniqueNumber(arr, n);
+	return 0;
+}

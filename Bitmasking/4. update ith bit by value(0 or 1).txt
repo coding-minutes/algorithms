@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int updateIthBitByValue(int n, int i, int v)
+{
+   //lets first cleat ith bit
+   int mask = (~(1<<i));
+   n = (n&mask);
+
+   int newmask = (v<<i);
+   n = (n|newmask);
+
+   return n;
+}
+
+int main()
+{
+  int n,i,v;
+  cin>>n>>i>>v;
+
+  cout<<updateIthBitByValue(n,i,v);
+	return 0;
+}
