@@ -1,5 +1,4 @@
-# Python 3 program for recursive binary search.
-# Modifications needed for the older Python 2 are found in comments.
+
 
 # Returns index of x in arr if present, else -1
 def binary_search(arr, low, high, x):
@@ -26,8 +25,9 @@ def binary_search(arr, low, high, x):
 		# Element is not present in the array
 		return -1
 
+
 # Test array
-arr = [ 2, 3, 4, 10, 40 ]
+arr = [2, 3, 4, 10, 40]
 x = 10
 
 # Function call
