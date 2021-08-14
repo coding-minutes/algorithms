@@ -1,0 +1,157 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool ek_bhi_mil_rha(vector<vector<int>>remaining_need, vector<int>currrently_available,vector<int>done_process){
+    int count=0;
+    for(auto x:done_process){
+        if(x==0){
+            count++;
+        }
+    }
+    for(int i=0;i<remaining_need.size();i++){
+        if(done_process[i]==1){
+            continue;
+        }
+        bool flag=false;
+        for(int j=0;j<remaining_need[i].size();j++){
+            if(remaining_need[i][j] > currrently_available[j]){
+                flag=true;
+                break;
+            }
+        }
+        if(flag==true){
+            count--;
+        }    
+    }
+    if(count>0){
+        return true;
+    }
+    return false;
+}
+
+int main() {
+    // input number of processes
+    int number_of_process;
+    cout<<"Enter Number of Processes:"<<endl;
+    cin>>number_of_process;
+    // input number of resources
+    int number_of_resources;
+    cout<<"Enter Number of Resources:"<<endl;
+    cin>>number_of_resources;
+    // input total instances of each resources
+    int total_resources_count[number_of_resources];
+    cout<<"Enter Total instances of each resource:"<<endl;
+    int temp=1;
+    for(int i=0;i<number_of_resources;i++){
+        cout<<"Enter total instances of Resource "<<(temp++)<<" :"<<endl;
+        int a;
+        cin>>a;
+        total_resources_count[i]=a;
+    }
+
+    vector<vector<int>>allocation;
+    vector<vector<int>>max_need;
+    vector<int>currrently_available;
+    vector<vector<int>>remaining_need;
+
+    // fill allocation and max_need now
+    temp=1;
+    cout<<"Now, Enter Allocation and maximum need of each resource for each process: "<<endl;
+    for(int i=0;i<number_of_process;i++){
+        // input for allocation
+        vector<int>k;
+        cout<<"Enter Allocation for process "<<(temp)<<" :"<<endl;
+        for(int j=0;j<number_of_resources;j++){
+            cout<<"For resources "<<(j+1)<<" :"<<endl;
+            int a;cin>>a;
+            k.push_back(a);
+        }
+        allocation.push_back(k);
+        // input for max_need
+        vector<int>l;
+        cout<<"Enter maximum need for process "<<(temp)<<" :"<<endl;
+        for(int j=0;j<number_of_resources;j++){
+            cout<<"For resources "<<(j+1)<<" :"<<endl;
+            int a;cin>>a;
+            l.push_back(a);
+        }
+        max_need.push_back(l);
+        temp++;
+    }
+    // remaining need
+    
+    for(int i=0;i<number_of_process;i++){
+        vector<int>k;
+        for(int j=0;j<number_of_resources;j++){
+            k.push_back(max_need[i][j]-allocation[i][j]);
+        }
+        remaining_need.push_back(k);
+    }
+    
+    // 3 tables done
+    // now for available
+    int resources_in_use[number_of_resources]={};
+    for(auto x:allocation){
+        for(int i=0;i<x.size();i++){
+            resources_in_use[i]+=x[i];
+        }
+    }
+    // complete current available at beginning
+    for(int i=0;i<number_of_resources;i++){
+        currrently_available.push_back(total_resources_count[i]-resources_in_use[i]);
+    }
+    // all directed to zero, means none of the process is completed right now.
+    vector<int>done_process(number_of_process,0);
+    cout<<endl;
+    // jb tk pure process me se, ek tho bhi complete hone layak hai, chalate rho
+    while(ek_bhi_mil_rha(remaining_need,currrently_available,done_process)){
+        for(int i=0;i<remaining_need.size();i++){
+            bool flag=false;
+            for(int j=0;j<remaining_need[i].size();j++){
+                if(remaining_need[i][j] > currrently_available[j]){
+                    flag=true;
+                }
+            }
+            // if flag is true means that process can't be processed right now.
+            if(flag==true){
+                continue;
+            }
+            // else if not true, means that process can be processed
+            // lets complete that process
+            if(done_process[i]==0){
+                done_process[i]=1;
+                cout<<"completed process: "<<(i+1)<<endl;
+                for(int j=0;j<allocation[i].size();j++){
+                    currrently_available[j]+=allocation[i][j];
+                }
+            }
+            // current available also updated
+        }
+    }
+    int ans=0;
+    for(int i=0;i<number_of_resources;i++){
+        if(currrently_available[i]==total_resources_count[i]){
+            continue;
+        }
+        ans=1;
+    }
+    cout<<endl;
+    if(ans==0){
+        cout<<"In safe state!!"<<endl;
+        cout<<"Current Avalilable instances for each resources are:"<<endl;
+        for(int i=0;i<number_of_resources;i++){
+            cout<<"For Resource "<<(i+1)<<": "<<currrently_available[i]<<endl;
+        }
+        cout<<endl;
+    }
+    else{
+        cout<<"Not in safe state."<<endl;
+        cout<<"Current Avalilable instances for each resources are:"<<endl;
+        for(int i=0;i<number_of_resources;i++){
+            cout<<"For Resource "<<(i+1)<<": "<<currrently_available[i]<<endl;
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    return 0;
+}
