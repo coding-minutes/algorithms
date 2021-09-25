@@ -2,14 +2,13 @@
 //In Both searches -- array must be sorted!
 
 #include<stdio.h>
-#include<stdlib.h>
 
 //Structure Created.
 struct Bin_Lin
 {
-    int *arr;
+    int arr[100];
     int size;
-}a;
+};
 
 //Method for using linear search
 int linear(struct Bin_Lin t,int key)
@@ -54,21 +53,21 @@ int bnary(struct Bin_Lin t,int key)
 int main()
 {
     int n,choice,key;
-   
     printf("Enter the size of array where you want to store elements :\n");
     scanf("%d",&n);
+   
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
     
-    a.size=n;
-    
-    a.arr = (int *)malloc(n*sizeof(int));
-    
-    printf("Enter elements :\n");
+    struct Bin_Lin a = {arr,n};
     for (int i=0;i<a.size;i++)
     {
-        scanf("%d",&a.arr[i]);
+        printf("%d",a.arr[i]);
     }
-    printf("\n");
-    printf("Press 0 for Linear Search\nPress 1 for Binary Search");
+    printf("0) Linear Search\n1) Binary Search");
     
     printf("\nEnter your choice : ");
     scanf("%d",&choice);
@@ -78,16 +77,13 @@ int main()
     
     if(choice==0)
     {
+        
         printf("%d index",linear(a,key));
     }
-    else if(choice==1)
+    if(choice==1)
     {
-        printf("%d index",linear(a,key));
+         printf("%d index",linear(a,key));
     }
-    else
-    {
-        printf("please select correct input !");
-    }
-    free(a.arr);
+
     return 0;
 }
