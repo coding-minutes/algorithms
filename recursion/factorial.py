@@ -11,15 +11,19 @@ def func(): <--
 """
 
 
-def recursive_factorial(n):
+def recursive_factorial(n, cache={}):
     if n == 1:
         return n
+    elif n in cache:
+        return cache[n]
     else:
-        return n * recursive_factorial(n-1)
+        print(f'calculating factorial of {n}')
+        cache[n] = n * recursive_factorial(n - 1)
+        return cache[n]
 
 
 # user input
-num = int(input())
+num = int(input("Enter the number:"))
 
 # check if the input is valid or not
 if num < 0:
@@ -32,5 +36,5 @@ else:
 """
  cd recursion/python factorial.py
  output: Factorial of number 5 = 120
- 
+
 """
