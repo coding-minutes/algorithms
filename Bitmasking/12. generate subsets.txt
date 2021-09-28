@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void filterChars(char c[], int n)
+{
+  int j=0;
+  while(n>0)
+  {
+    if(n&1)
+    {
+      cout<<c[j];
+    }
+    j++;
+    n>>=1;
+  }
+  cout<<endl;
+}
+
+void printSubsequences(char c[])
+{
+  int n = strlen(c);
+  for(int i=0; i<(1<<n); i++)
+  {
+    filterChars(c,i);
+  }
+}
+
+int main()
+{
+  char c[100];
+  cin>>c;
+  printSubsequences(c);
+	return 0;
+}

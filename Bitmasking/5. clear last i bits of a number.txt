@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int clearLastIBits(int n, int i)
+{
+	//lets take mask with all ones
+	int mask = -1;
+
+	//lets clear last i bits of our mask
+	mask = (mask<<i);
+
+	//take AND with of your number with mask
+	n = n&mask;
+
+	return n;
+}
+
+int main()
+{
+	int n,i;
+	cin>>n>>i;
+	cout<<clearLastIBits(n,i);
+	return 0;
+}
