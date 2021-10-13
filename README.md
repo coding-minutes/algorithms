@@ -5,7 +5,7 @@ This repository contains computer science algorithms code.
 
 * Fork the algorithms Repository from Coding Minutes
 * Now from your Github account Clone the Repository
-* Add new algorithms from your working directory
+* Add new algorithms from your working directory or modify current algorithmns with better version 
 * commit the changes when your code is errorfree
 * push the code and click on contribute in your github (server)
 * Click on Create a pull Request
