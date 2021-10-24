@@ -5,7 +5,7 @@ using namespace std;
 
 void inputMatrix(int mat[][COLS], int rows, int cols);
 void printMatrix(int mat[][COLS], int rows, int cols);
-void accessMatrix(int mat[][COLS], int row, int col);
+void accessMatrix(int mat[][COLS], int rows, int cols);
 
 int main()
 {
