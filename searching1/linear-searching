@@ -1,0 +1,13 @@
+my_list = (4,8,6,5,4,5,7)
+
+ele = 7
+
+flag = False
+for i in my_list:
+if(- == ele):
+flag = true
+break
+if("flag == true):
+print("Element found")
+else:
+    print("Element not found")
