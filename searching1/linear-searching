@@ -1,6 +1,6 @@
 my_list = (4,8,6,5,4,5,7)
 
-ele = 7
+ele = int(input())
 
 flag = False
 for i in my_list:
