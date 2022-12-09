@@ -9,6 +9,7 @@ for i in my_list:
         break
 
 if(flag==True):
-    print("Element found")
+    print("Element found! huarrrayyy")
 else:
-    print("Element not found")
+    print("Element not found!!! sry")
+    
