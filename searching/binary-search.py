@@ -18,4 +18,4 @@ pos = binary_search(my_list, ele)
 if pos > 0:
     print("Element found at", pos)
 else:
-    print("Element not found")
+    print("Element not found!!!")
