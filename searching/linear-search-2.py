@@ -8,7 +8,7 @@ for i in my_list:
         flag = True
         break
 
-if flag == True:
+if flag:
     print("Element found.")
 else:
     print("Element not found.")
